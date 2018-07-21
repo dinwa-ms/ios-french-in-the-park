@@ -12,6 +12,7 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
+
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -21,12 +22,13 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+          
           <View style={styles.welcomeContainer}>
             <Image
               source={
                 __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
+                  ? require('../assets/images/Icon.png')
+                  : require('../assets/images/Icon.png')
               }
               style={styles.welcomeImage}
             />
@@ -35,31 +37,39 @@ export default class HomeScreen extends React.Component {
           <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
+            <Text style={styles.getStartedText}>Welcome to French in the Park.</Text>
+            
+            <Text style={styles.getStartedText}></Text>
+            
+            <Text style={styles.getStartedText}>For more information, you can go to </Text>
+            
+            <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
             </Text>
+            
+            <Text onPress={this._handleHomePagePress} style={styles.helpLinkText}>
+              WebSite HomaPage
+            </Text>
+
+            <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
+            </Text>
+            
+            <Text onPress={this._handleYouTubePress} style={styles.helpLinkText}>
+              YouTube Channel
+            </Text>
+
+            <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
+            </Text>
+            
+            <Text onPress={this._handleFacebookPress} style={styles.helpLinkText}>
+              Facebook Page
+            </Text>
+
           </View>
 
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
+
         </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
+        
       </View>
     );
   }
@@ -68,27 +78,36 @@ export default class HomeScreen extends React.Component {
     if (__DEV__) {
       const learnMoreButton = (
         <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
+          Touch me to learn more.
         </Text>
       );
 
       return (
         <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
+          
         </Text>
       );
     } else {
       return (
         <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
         </Text>
       );
     }
   }
 
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
+  _handleHomePagePress = () => {
+    // WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
+    WebBrowser.openBrowserAsync('https://www.frenchinthepark.com/');
+  };
+
+  _handleYouTubePress = () => {
+    // WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
+    WebBrowser.openBrowserAsync('https://www.youtube.com/channel/UClZp8sCa5robF91b8onQFrg');
+  };
+
+  _handleFacebookPress = () => {
+    // WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
+    WebBrowser.openBrowserAsync('https://www.facebook.com/French-In-The-Park-189706011645458/');
   };
 
   _handleHelpPress = () => {
@@ -104,10 +123,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   developmentModeText: {
-    marginBottom: 20,
+    marginBottom: 10,
     color: 'rgba(0,0,0,0.4)',
     fontSize: 14,
-    lineHeight: 19,
+    lineHeight: 10,
     textAlign: 'center',
   },
   contentContainer: {
@@ -119,15 +138,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   welcomeImage: {
-    width: 100,
-    height: 80,
+    width: 250,
+    height: 200,
     resizeMode: 'contain',
     marginTop: 3,
-    marginLeft: -10,
   },
   getStartedContainer: {
     alignItems: 'center',
-    marginHorizontal: 50,
+    marginHorizontal: 10,
   },
   homeScreenFilename: {
     marginVertical: 7,
@@ -182,6 +200,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   helpLinkText: {
+    textAlign: 'center',
     fontSize: 14,
     color: '#2e78b7',
   },

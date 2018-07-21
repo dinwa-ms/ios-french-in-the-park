@@ -4,8 +4,9 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import VocabsScreen from '../screens/VocabsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import VideosScreen from '../screens/VideosScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
@@ -25,12 +26,12 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const VocabsStack = createStackNavigator({
+  Vocabss: VocabsScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+VocabsStack.navigationOptions = {
+  tabBarLabel: 'Vocabss',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -53,8 +54,24 @@ SettingsStack.navigationOptions = {
   ),
 };
 
+const VideosStack = createStackNavigator({
+  Settings: VideosScreen,
+});
+
+VideosStack.navigationOptions = {
+  tabBarLabel: 'Videos',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+    />
+  ),
+};
+
+
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
+  VocabsStack,
+  VideosStack,
+  //SettingsStack,
 });
