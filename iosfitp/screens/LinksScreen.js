@@ -1,19 +1,25 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { View, WebView, Platform, ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
-    title: 'Links',
+    title: 'Links Videos',
   };
 
   render() {
+    const url = 'https://www.youtube.com/embed/JQb7JvEckmk';
     return (
-      <ScrollView style={styles.container}>
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-        <ExpoLinksView />
-      </ScrollView>
+      <WebView
+        source={{
+          uri: url,
+        }}
+        onNavigationStateChange={this.onNavigationStateChange}
+        startInLoadingState
+        scalesPageToFit
+        javaScriptEnabled
+        style={{ flex: 1 }}
+      />
     );
   }
 }
@@ -24,4 +30,9 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     backgroundColor: '#fff',
   },
+
+  WebViewContainer: {
+    marginTop: (Platform.OS == 'ios') ? 20 : 0,
+  },
+
 });
